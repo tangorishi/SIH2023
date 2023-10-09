@@ -34,6 +34,12 @@ def signin():
 def signup():
     return render_template('signup.html')
 
+@app.route('/price')
+def price():
+    return render_template('price.html')
+
+
+
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
@@ -41,19 +47,19 @@ def dashboard():
 
 def findMedicine(pred):
     if pred == 0:
-        return "fluorouracil"
+        return "Diclofenac"
     elif pred == 1:
-        return "Aldara"
+        return "Erivedge (Vismodegib)"
     elif pred == 2:
         return "Prescription Hydrogen Peroxide"
     elif pred == 3:
-        return "fluorouracil"
+        return "Mild Topical Steroid"
     elif pred == 4:
-        return "fluorouracil (5-FU):"
+        return "Aldesleukin"
     elif pred == 5:
-        return "fluorouracil"
+        return "Melanocytic nevi can be surgically removed"
     elif pred == 6:
-        return "fluorouracil"        
+        return "Laser Therapy"        
 
 
 @app.route('/detect', methods=['GET', 'POST'])
@@ -66,7 +72,7 @@ def detect():
             return make_response(jsonify({
                 'error': 'No file part in the request',
                 'code': 'FILE',
-                'message': 'file is not valid'
+                'message': 'Invalid File!'
             }), 400)
 
         imagePil = Image.open(io.BytesIO(file.read()))
